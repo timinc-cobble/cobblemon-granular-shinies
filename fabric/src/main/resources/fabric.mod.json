@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "${modId}",
+  "version": "${modCobblemonVersion}-fabric-${modMyVersion}",
+  "name": "${modName}",
+  "description": "${modDescription}",
+  "authors": [
+    "${modAuthor}"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "us.timinc.mc.cobblemon.granularshinies.fabric.GranularShiniesFabric"
+      }
+    ]
+  },
+  "depends": {
+    "java": ">=21",
+    "minecraft": "${minecraft_version}",
+    "fabric": "*",
+    "cobblemon": ">=${cobblemon_version} <1.8.0"
+  }
+}
