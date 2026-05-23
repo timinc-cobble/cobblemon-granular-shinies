@@ -1,0 +1,78 @@
+plugins {
+    id("dev.architectury.loom")
+    id("architectury-plugin")
+    id("com.gradleup.shadow")
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    silentMojangMappingsLicense()
+    enableTransitiveAccessWideners.set(true)
+}
+
+val shadowCommon: Configuration by configurations.creating
+
+dependencies {
+    minecraft("com.mojang:minecraft:${property("minecraft_version")}")
+    mappings(loom.officialMojangMappings())
+
+    modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader_version")}")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+
+    //needed for cobblemon
+    modImplementation("net.fabricmc:fabric-language-kotlin:${property("fabric_kotlin_version")}")
+    modImplementation("com.cobblemon:fabric:${property("cobblemon_version")}") { isTransitive = false }
+
+    implementation(project(":common", configuration = "namedElements"))
+    "developmentFabric"(project(":common", configuration = "namedElements"))
+    shadowCommon(project(":common", configuration = "transformProductionFabric"))
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+
+    processResources {
+        inputs.property("version", project.version)
+
+        filesMatching("fabric.mod.json") {
+            expand(project.properties)
+        }
+    }
+
+    jar {
+        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
+        archiveClassifier.set("dev-slim")
+    }
+
+    shadowJar {
+        configurations = listOf(shadowCommon)
+
+        archiveBaseName.set("${rootProject.name}-${project.name}")
+        archiveVersion.set("${project.version}")
+        archiveClassifier.set("shadow")
+    }
+
+    remapJar {
+        injectAccessWidener = true
+        dependsOn(shadowJar)
+        inputFile.set(shadowJar.flatMap { it.archiveFile })
+
+        archiveBaseName.set("${rootProject.name}-${project.name}")
+        archiveVersion.set("${project.version}")
+    }
+
+    remapSourcesJar {
+        archiveBaseName.set("${rootProject.name}-${project.name}")
+        archiveVersion.set("${project.version}")
+        archiveClassifier.set("sources")
+    }
+}

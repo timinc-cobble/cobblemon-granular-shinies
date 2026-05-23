@@ -1,0 +1,33 @@
+modLoader="kotlinforforge"
+loaderVersion="[5.10,)"
+license = "MIT"
+issueTrackerURL = "${modIssues}"
+
+[[mods]]
+modId = "${modId}"
+version = "${modCobblemonVersion}-neoforge-${modMyVersion}"
+displayName = "${modName}"
+authors = "${modAuthors}"
+description = "${modDescription}"
+#logoFile = ""
+
+[[dependencies.${modId}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[${minecraft_version}]"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modId}]]
+modId = "neoforge"
+mandatory = true
+versionRange = "[${neoforge_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modId}]]
+modId = "cobblemon"
+mandatory = true
+versionRange = "[${cobblemon_version},)"
+ordering = "AFTER"
+side = "BOTH"
