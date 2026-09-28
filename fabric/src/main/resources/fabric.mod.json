@@ -21,6 +21,13 @@
     "java": ">=21",
     "minecraft": "${minecraft_version}",
     "fabric": "*",
-    "cobblemon": ">=${cobblemon_version} <1.8.0"
-  }
+    "cobblemon": "${modCobblemonVersion}",
+    "tim_core": ">=${tim_core_fabric_version}"
+  },
+  "contact": {
+    "homepage": "${modDiscord}",
+    "issues": "${modIssues}",
+    "sources": "${modSource}"
+  },
+  "icon": "${modId}_small.png"
 }

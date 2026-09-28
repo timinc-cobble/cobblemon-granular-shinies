@@ -1,5 +1,5 @@
-modLoader="kotlinforforge"
-loaderVersion="[5.10,)"
+modLoader = "kotlinforforge"
+loaderVersion = "[5.12,)"
 license = "MIT"
 issueTrackerURL = "${modIssues}"
 
@@ -7,27 +7,36 @@ issueTrackerURL = "${modIssues}"
 modId = "${modId}"
 version = "${modCobblemonVersion}-neoforge-${modMyVersion}"
 displayName = "${modName}"
-authors = "${modAuthors}"
+authors = "${modAuthor}"
 description = "${modDescription}"
-#logoFile = ""
+logoFile = "${modId}_small.png"
+displayUrl = "${modDiscord}"
+modUrl = "${modSource}"
 
-[[dependencies.${modId}]]
+[[dependencies.${ modId }]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[${minecraft_version}]"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${modId}]]
+[[dependencies.${ modId }]]
 modId = "neoforge"
 mandatory = true
 versionRange = "[${neoforge_version},)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${modId}]]
+[[dependencies.${ modId }]]
 modId = "cobblemon"
 mandatory = true
-versionRange = "[${cobblemon_version},)"
+versionRange = "[${cobblemon_version}]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ modId }]]
+modId = "tim_core"
+mandatory = true
+versionRange = "[${tim_core_neoforge_version},)"
 ordering = "AFTER"
 side = "BOTH"
