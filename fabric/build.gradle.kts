@@ -77,7 +77,7 @@ tasks {
 
     shadowJar {
         archiveClassifier.set("dev-shadow")
-        archiveBaseName.set("${rootProject.name}-${project.name}")
+        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         configurations = listOf(shadowBundle)
     }
 
@@ -85,7 +85,7 @@ tasks {
         dependsOn(shadowJar)
         inputFile.set(shadowJar.flatMap { it.archiveFile })
 
-        archiveBaseName.set("${rootProject.name}-${project.name}")
+        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         archiveVersion.set("${project.version}")
     }
 }
