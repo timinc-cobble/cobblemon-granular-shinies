@@ -8,7 +8,7 @@ import us.timinc.mc.cobblemon.granularshinies.common.extensions.isInvalid
 import us.timinc.mc.cobblemon.timcore.AbstractConfig
 import us.timinc.mc.cobblemon.timcore.AbstractMod
 
-const val MOD_ID = "cobblemon_granularshinies"
+const val MOD_ID = "granularshinies"
 
 object GranularShinies : AbstractMod<GranularShinies.Config>(MOD_ID, Config::class.java) {
     class Config : AbstractConfig() {
