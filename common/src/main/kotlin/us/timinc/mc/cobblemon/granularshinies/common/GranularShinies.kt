@@ -24,7 +24,7 @@ object GranularShinies : AbstractMod<GranularShinies.Config>(MOD_ID, Config::cla
         CobblemonEvents.DATA_SYNCHRONIZED.subscribe {
             config.overrides.forEach { (properties) ->
                 if (PokemonProperties.parse(properties).isInvalid()) {
-                    this.debugger.debug("Your override of $properties is invalid and will match all Pokemon", overrideConfig = true)
+                    this.debugger.debug("Your override of $properties does not contain a valid species and may match more Pokemon than intended", overrideConfig = true)
                 }
             }
         }
