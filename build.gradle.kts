@@ -4,15 +4,15 @@ plugins {
     id("java")
     id("java-library")
     kotlin("jvm") version("2.4.0")
-    id("dev.architectury.loom") version("1.11-SNAPSHOT") apply false
-    id("architectury-plugin") version("3.4-SNAPSHOT") apply false
+    id("dev.architectury.loom") version("1.11.458") apply false
+    id("architectury-plugin") version("3.4.164") apply false
 }
 
 allprojects {
     apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    version = project.properties["mod_version"]!!
+    version = "${project.property("modCobblemonVersion")}-${project.property("modMyVersion")}"
     group = project.properties["maven_group"]!!
 
     repositories {
